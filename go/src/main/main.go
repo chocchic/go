@@ -26,7 +26,7 @@ func main() {
 		fmt.Println("5미만의 숫자")
 	}
 	for i := 0; i < 10; i++ {
-		fmt.Print(i)
+		fmt.Println("for : ", i)
 	}
 	// 한줄에 2개의 명령문이 존재하는 경우는 각 명령문을 구분하기 위해서 ;를 사용
 	fmt.Println("하나의 출력 명령어")
