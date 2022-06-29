@@ -1,6 +1,11 @@
 package main
 
-import . "fmt"
+import (
+	. "fmt"
+	"io/ioutil"
+	"math/rand"
+	"time"
+)
 
 func main() {
 	F1()
@@ -28,6 +33,53 @@ func main() {
 
 	result7 := FibnoRecursive(10)
 	Println(result7)
+
+	// 함수를 변수에 저장
+	f := F1
+	f()
+
+	F2()
+
+	// 익명함수 생성과 호출
+	r := func(n int) int {
+		if n == 1 {
+			return 1
+		}
+		return n + RecursiveSum(n-1)
+	}(5)
+	Println(r)
+
+	// 파일 내용을 읽어오기
+	// 첫번째 리턴되는 내용은 데이터를 읽은 경우 데이터
+	// 두번째 리터되는 내용은 에러가 발생하지 않으면 nil, 에러가 발생하면 에러 내용
+	b, err := ioutil.ReadFile("./file.txt")
+	if err == nil {
+		Printf("contents:%s\n", b)
+	}
+
+	if b, err := ioutil.ReadFile("./file.txt"); err == nil {
+		Printf("contents:%s\n", b)
+	}
+
+	// switch 표현식에서 함수 호출
+	rand.Seed(time.Now().UnixNano())
+	switch i := rand.Intn(10); {
+	case i >= 1 && i < 6:
+		Println("작은 숫자")
+	default:
+		Println("큰 숫자")
+	}
+
+	// outer함수에 만들어진 변수 접근 - 에러
+	/*
+		localvar = localvar + 1
+		Println(localvar)
+	*/
+}
+
+// 변수에 함수를 할당해서 생성
+var F2 = func() {
+	Println("함수")
 }
 
 func F1() {
@@ -96,4 +148,9 @@ func FibnoRecursive(n int) int {
 		b = result
 	}
 	return result
+}
+
+func outer() {
+	localvar := 1
+	Println(localvar)
 }
