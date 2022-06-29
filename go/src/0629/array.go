@@ -40,4 +40,23 @@ func main() {
 	al := list
 	al[2] = "푸라닭"
 	Println(list)
+
+	// 3개의 데이터를 저장할수 있는 slice 생성
+	var li = make([]string, 3)
+
+	// slice의 데이터를 li에 복제
+	copy(li, list)
+	li[0] = "BHC"
+	Println(list)
+
+	// slice에 데이터 추가
+	list = append(list, "김밥천국")
+	list = append(list, "등촌칼국수", "지코바")
+	Println(list)
+
+	// 슬라이스를 추가
+	st := []string{"당근", "오이", "양파"}
+	list = append(list, st...)
+	Println(list)
+
 }
