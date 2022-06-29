@@ -75,6 +75,12 @@ func main() {
 		localvar = localvar + 1
 		Println(localvar)
 	*/
+
+	// Outer가 리턴한 함수를 대입
+	clousre := outer()
+	clousre()
+	outer()
+
 }
 
 // 변수에 함수를 할당해서 생성
@@ -150,7 +156,12 @@ func FibnoRecursive(n int) int {
 	return result
 }
 
-func outer() {
+func outer() func() {
 	localvar := 1
-	Println(localvar)
+
+	// 리턴하는 함수 - 이 함수는 Outer안에 존재하기 때문에 localVar을 사용하는 것이 가능
+	return func() {
+		localvar = localvar + 1
+		Println("localvar : ", localvar)
+	}
 }
