@@ -13,5 +13,6 @@ func display() {
 func main() {
 	// function call
 	display()
+	Println("동잃ㄴ")
 	display()
 }
