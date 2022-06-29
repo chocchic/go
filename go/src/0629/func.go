@@ -19,6 +19,15 @@ func main() {
 
 	result3, result4 := MultipleReturn(100, 2000)
 	Println("결과 : ", result3, " : ", result4)
+
+	result5 := RecursiveSum(7)
+	Println(result5)
+
+	result6 := Fib(10)
+	Println(result6)
+
+	result7 := FibnoRecursive(10)
+	Println(result7)
 }
 
 func F1() {
@@ -55,4 +64,36 @@ func NamedReturn(a, b int) (add, sub int) {
 	add = a + b
 	sub = a - b
 	return
+}
+
+// 1부터 n까지의 합을 리턴하는 함수 - n+ n-1까지의 합
+func RecursiveSum(n int) int {
+	if n == 1 {
+		return 1
+	}
+
+	return n + RecursiveSum(n-1)
+}
+
+// 피보나치 수열 - 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...
+// 첫번째와 두번째는 1
+// 세번째부터는 이전 2개 항의 합
+
+func Fib(n int) int {
+	if n == 1 || n == 2 {
+		return 1
+	}
+	return Fib(n-1) + Fib(n-2)
+}
+
+func FibnoRecursive(n int) int {
+	a := 1
+	b := 1
+	result := 1
+	for i := 3; i <= n; i++ {
+		result = a + b
+		a = b
+		b = result
+	}
+	return result
 }
